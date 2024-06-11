@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registroUsuario</title>
+</head>
+<body>
+    <center>
+        <form id="registroForm">
+            <label for="nombre">nombre</label>
+            <input type="text" id="nombre" required>
+            <br>
+            <label for="correo">correo</label>
+            <input type="email" id="correo" required>
+            <br>
+            <label for="contraseña">contraseña</label>
+            <input type="password" id="contraseña" required>
+            <br>
+            <label for="verificarContraseña">verificar contraseña</label>
+            <input type="password" id="verificarContraseña" required>
+            <br>
+            <input type="checkbox" id="tratamientoDatos" required>
+            <a href="https://cache.dominos.com/olo/6_53_4/assets/build/market/PE/_en/pdf/national_menu.pdf">tratamiento de datos personales</a>
+            <br>
+            <button type="submit">Registrarse</button>
+        </form>
+        <p>¿Ya tienes una cuenta? <a href="./inicioSesion.html">¡Inicia Sesion!</a></p>
+    </center>
+
+    <script>
+        document.getElementById("registroForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            
+            
+            var nombre = document.getElementById("nombre").value;
+            var correo = document.getElementById("correo").value;
+            var contraseña = document.getElementById("contraseña").value;
+            var verificarContraseña = document.getElementById("verificarContraseña").value;
+            var tratamientoDatos = document.getElementById("tratamientoDatos").checked;
+
+            
+            if (contraseña !== verificarContraseña) {
+                alert("Las contraseñas no coinciden");
+                return; 
+            }
+
+           
+            var usuario = {
+                nombre: nombre,
+                correo: correo,
+                contraseña: contraseña,
+                tratamientoDatos: tratamientoDatos
+            };
+
+           
+            localStorage.setItem("usuario", JSON.stringify(usuario));
+
+          
+            alert("Registro exitoso");
+
+            
+        });
+    </script>
+</body>
+</html>
