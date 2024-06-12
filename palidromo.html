@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="palindromo.css">
+    <title>Verificador de Palíndromos</title>
+</head>
+<body>
+    <center>
+        <h2>Verificador de Palíndromos</h2>
+        <form id="palindromeForm">
+            <label for="palabra">Ingresa una palabra:</label>
+            <input type="text" id="palabra" required>
+            <br>
+            <button type="submit">Verificar</button>
+        </form>
+        <p id="resultado"></p>
+    </center>
+
+    <script>
+        document.getElementById("palindromeForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita que el formulario se envíe
+            
+            // Obtener la palabra ingresada por el usuario
+            var palabra = document.getElementById("palabra").value.toLowerCase();
+            
+            // Verificar si la palabra es un palíndromo
+            var esPalindromo = verificarPalindromo(palabra);
+            
+            // Mostrar el resultado
+            if (esPalindromo) {
+                document.getElementById("resultado").innerText = "'" + palabra + "' es un palíndromo.";
+            } else {
+                document.getElementById("resultado").innerText = "'" + palabra + "' no es un palíndromo.";
+            }
+        });
+        
+        function verificarPalindromo(palabra) {
+            // Eliminar espacios y signos de puntuación
+            var regex = /[.,\/#!$%\^&\*;:{}=\-_`~()]/g;
+            var palabraLimpia = palabra.replace(regex, "").replace(/\s/g, "");
+            
+            // Comparar la palabra original con su reverso
+            return palabraLimpia === palabraLimpia.split("").reverse().join("");
+        }
+    </script>
+</body>
+</html>
